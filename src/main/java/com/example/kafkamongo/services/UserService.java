@@ -4,10 +4,8 @@ import com.example.kafkamongo.entities.User;
 import com.example.kafkamongo.exceptions.UserNotFoundException;
 import com.example.kafkamongo.repositories.UserRepository;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

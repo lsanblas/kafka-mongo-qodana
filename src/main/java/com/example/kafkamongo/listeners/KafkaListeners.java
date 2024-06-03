@@ -2,7 +2,6 @@ package com.example.kafkamongo.listeners;
 
 import com.example.kafkamongo.entities.User;
 import com.example.kafkamongo.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.mail.SimpleMailMessage;
@@ -14,16 +13,15 @@ import java.util.List;
 @Component
 public class KafkaListeners {
 
-    @Autowired
-    private JavaMailSender emailSender;
-
     @Value("${spring.mail.username}")
     private String mailFrom;
 
     private final UserService userService;
+    private final JavaMailSender emailSender;
 
-    public KafkaListeners(UserService userService) {
+    public KafkaListeners(UserService userService, JavaMailSender emailSender) {
         this.userService = userService;
+        this.emailSender = emailSender;
     }
 
     @KafkaListener(topics = "notification", groupId = "groupId")
